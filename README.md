@@ -28,9 +28,53 @@ curl -X GET "http://nycvoterfile.com/info?lastname=chestnut&firstname=william"
 
 Sample Response:
 ```
-{"success":true,"body":{"firstname":"WILLIAM","lastname":"CHESTNUT","dob":"1948-03-24","sboeid":"NY000000000038157351","enrollment":"DEM","status":"INACTIVE","idmet":true,"election_district":11,"legislative_district":null,"congressional_district":13,"senate_district":30,"assembly_district":71,"council_district":9}}
+{
+"success":true,
+"body":
+  {
+    "firstname":"WILLIAM",
+    "lastname":"CHESTNUT",
+    "dob":"1948-03-24",
+    "sboeid":"NY000000000038157351",
+    "enrollment":"DEM",
+    "status":"INACTIVE",
+    "idmet":true,
+    "election_district":11,
+    "legislative_district":null,
+    "congressional_district":13,
+    "senate_district":30,
+    "assembly_district":71,
+    "council_district":9
+  }
+}
 ```
 
 ### /score
 The `GET /score` endpoint may be used to retrieve Local, Midterm, Presidential
 and Overall Voter Scores for a specific voter.  
+
+
+Sample Request:
+```
+curl -X GET "http://nycvoterfile.com/score?lastname=chestnut&firstname=william"
+```
+
+Sample Response:
+```
+{
+  "success":true,
+  "body":
+    {
+      "firstname":"WILLIAM",
+      "lastname":"CHESTNUT",
+      "dob":"1948-03-24",
+      "sboeid":"NY000000000038157351",
+      "local_primary":"0.0148568561452",
+      "local_general":"0.0119448615791",
+      "national_midterm":"0.0125203056982",
+      "national_presidential":"0.10249866171",
+      "score_w_scaled":"0.0127796093651",
+      "score_total_scaled":"0.0431264033605"
+    }
+}
+```

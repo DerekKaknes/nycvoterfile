@@ -63,6 +63,19 @@ class Rawvoter < ActiveRecord::Base
     }
   end
 
+  def self.find_by_params(params)
+    firstname = params[:firstname] ? params[:firstname].upcase : nil
+    lastname = params[:lastname] ? params[:lastname].upcase : nil
+    dob = params[:dob]
+    query_params = {dob: dob, lastname: lastname}.delete_if {|k,v| !v}
+    voters = Rawvoter.where(query_params)
+    if firstname
+      voter = voters.detect {|v| v.firstname.match(/.*#{firstname}.*/)}
+    else
+      voter = voters.first
+    end
+  end
+
   def self.not_found_message
       {message: 'No voter found'}
   end

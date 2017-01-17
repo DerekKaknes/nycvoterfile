@@ -11,23 +11,21 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/score' do
-    lastname = params[:lastname].upcase
-    voter = Rawvoter.find_by(dob: params[:dob], lastname: lastname)
-    if voter
-      voter.name_and_scores.to_json
-    else
-      Rawvoter.not_found_message.to_json
-    end
+    voter = Rawvoter.find_by_params(params)
+    msg = {'success': true}
+    msg['body'] = voter ? voter.name_and_scores : Rawvoter.not_found_message
+    msg.to_json
   end
 
   get '/info' do
-    lastname = params[:lastname].upcase
-    voter = Rawvoter.find_by(dob: params[:dob], lastname: lastname)
-    if voter
-      voter.status_info.to_json
-    else
-      Rawvoter.not_found_message.to_json
-    end
+    voter = Rawvoter.find_by_params(params)
+    msg = {'success': true}
+    msg['body'] = voter ? voter.status_info : Rawvoter.not_found_message
+    msg.to_json
   end
 
+  not_found do
+    status 404
+    {'success': false, 'body': 'Resource not found.'}.to_json
+  end
 end

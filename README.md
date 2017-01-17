@@ -23,7 +23,7 @@ and various electoral districts.
 
 Sample Request:
 ```
-curl -X GET "http://nycvoterfile.com/info?lastname=chestnut&firstname=william"
+curl -X GET "http://www.voterfile.nyc/info?lastname=chestnut&firstname=william"
 ```
 
 Sample Response:
@@ -56,7 +56,7 @@ and Overall Voter Scores for a specific voter.
 
 Sample Request:
 ```
-curl -X GET "http://nycvoterfile.com/score?lastname=chestnut&firstname=william"
+curl -X GET "http://www.voterfile.nyc/score?lastname=chestnut&firstname=william"
 ```
 
 Sample Response:

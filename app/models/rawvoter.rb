@@ -44,4 +44,27 @@ class Rawvoter < ActiveRecord::Base
     }
   end
 
+
+  def status_info
+    {
+      firstname: firstname,
+      lastname: lastname,
+      dob: dob,
+      sboeid: sboeid,
+      enrollment: enrollment,
+      status: status,
+      idmet: idmet,
+      election_district: ed_number,
+      legislative_district: ld_number,
+      congressional_district: cd,
+      senate_district: sd,
+      assembly_district: ad,
+      council_district: district
+    }
+  end
+
+  def self.not_found_message
+      {message: 'No voter found'}
+  end
+
 end

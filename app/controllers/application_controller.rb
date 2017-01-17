@@ -16,7 +16,17 @@ class ApplicationController < Sinatra::Base
     if voter
       voter.name_and_scores.to_json
     else
-      {message: 'No voter found'}.to_json
+      Rawvoter.not_found_message.to_json
+    end
+  end
+
+  get '/info' do
+    lastname = params[:lastname].upcase
+    voter = Rawvoter.find_by(dob: params[:dob], lastname: lastname)
+    if voter
+      voter.status_info.to_json
+    else
+      Rawvoter.not_found_message.to_json
     end
   end
 

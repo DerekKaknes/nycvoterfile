@@ -5,15 +5,18 @@ gem 'activerecord', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
 gem 'require_all'
-gem 'sqlite3'
 gem "pg"
-gem 'thin'
-gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
 gem 'dotenv', :require => 'dotenv/load'
 gem 'json'
+
+group :development do
+  gem 'thin'
+  gem 'shotgun'
+  gem 'sqlite3'
+end
 
 group :test do
   gem 'rspec'
